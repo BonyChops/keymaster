@@ -1,11 +1,11 @@
-# Keymaster
+# Keymaster (Apple Watch Supported)
 
-Keymaster is a small binary written in Swift that allows scripts to access the Mac Keychain guarded by TouchID.
+Keymaster is a small binary written in Swift that allows scripts to access the Mac Keychain guarded by TouchID and Apple Watch.
 
 Macs come with the `security` command which can get and set secrets to the Keychain:
 
 ```bash
-# Save a key/value to the default "login" keychain, with key "MyKeyName", update if exists (-U), 
+# Save a key/value to the default "login" keychain, with key "MyKeyName", update if exists (-U),
 # allow no app to access without a prompt (-T ""), and prompt for secret to store (-w)
 security add-generic-password -a login -s "MyKeyName" -T "" -U -w
 
@@ -33,7 +33,7 @@ Put the binary somewhere in your path.
 
 `keymaster get MyKeyName`
 
-The first time you `get` the secret, you should "always allow" the `keymaster` binary. Upon subsequent accesses, you will always be prompted for TouchID in order to access the secret.
+The first time you `get` the secret, you should "always allow" the `keymaster` binary. Upon subsequent accesses, you will be prompted for TouchID, Apple Watch in order to access the secret. It'll fallback to password prompt once no methods are availabe.
 
 To change the secret, you can use the `Keychain Access.app` that comes with your Mac.
 
